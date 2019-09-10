@@ -1,0 +1,26 @@
+* {
+    box-sizing: border-box;
+}
+
+div.form-tile {
+    border: 1px solid black;
+}
+
+div.form-tile h3, div.form-tile h5 {
+    margin: 10px 0px;
+}
+
+#log {
+    overflow: scroll;
+    color: darkgreen;
+    font-size: 12px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 10px;
+}
+
+#reset {
+    text-decoration: none;
+    color: crimson;
+    font-size: 12px;
+}

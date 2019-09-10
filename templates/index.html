@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8"> 
+        <title>Gold Digger</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <h4 class="my-1">Your Gold:</h4>
+            <div class="container gold_count">
+                <h4>{{ session['gold'] }}</h4>
+            </div>
+        </div>
+        <div class="container-fluid row justify-content-between">
+            <div class="d-inline-block form-tile col-5 col-md-2 text-center my-3">
+                <h3 class="my-5">Farm</h3>
+                <h5 class="mt-5">You might find:</h5>
+                <h5 class="my-5">10 - 20 gp</h5>
+                <form class="form-group" action="/process_money" method="post">
+                    <input type="hidden" name="area" value="farm">
+                    <input type="hidden" name="min" value="10">
+                    <input type="hidden" name="max" value="20">
+                    <input class="btn btn-primary form-control" type="submit" value="Dig it up!">
+                </form>    
+            </div>
+            <div class="d-inline-block form-tile col-5 col-md-2 text-center my-3">
+                <h3 class="my-5">Cave</h3>
+                <h5 class="mt-5">You might find:</h5>
+                <h5 class="my-5">5 - 10 gp</h5>
+                <form class="form-group" action="/process_money" method="post">
+                    <input type="hidden" name="area" value="cave">
+                    <input type="hidden" name="min" value="5">
+                    <input type="hidden" name="max" value="10">
+                    <input class="btn btn-primary form-control" type="submit" value="Dig it up!">
+                </form>    
+            </div>
+            <div class="d-inline-block form-tile col-5 col-md-2 text-center my-3">
+                <h3 class="my-5">House</h3>
+                <h5 class="mt-5">You might find:</h5>
+                <h5 class="my-5">2 - 10 gp</h5>
+                <form class="form-group" action="/process_money" method="post">
+                    <input type="hidden" name="area" value="house">
+                    <input type="hidden" name="min" value="2">
+                    <input type="hidden" name="max" value="10">
+                    <input class="btn btn-primary form-control" type="submit" value="Dig it up!">
+                </form>    
+            </div>
+            <div class="d-inline-block form-tile col-5 col-md-2 text-center my-3">
+                <h3 class="my-5">Casino</h3>
+                <h5 class="mt-5">Earn or lose:</h5>
+                <h5 class="my-5">0 - 50 gp</h5>
+                <form class="form-group" action="/process_money" method="post">
+                    <input type="hidden" name="area" value="casino">
+                    <input type="hidden" name="min" value="-50">
+                    <input type="hidden" name="max" value="50">
+                    <input class="btn btn-primary form-control" type="submit" value="Dig it up!">
+                </form>    
+            </div>
+        </div>
+        <div id="log" class="col-10">
+            {% for i in range (session['log']|length, -1, -1) -%}
+            {{ session['log'][i]| safe }}
+            <br />
+            {% endfor %}
+        </div>
+        <form action="/" method="post">
+            <input type="hidden" name="reset" value="True">
+            <input type="submit" class="btn btn-small btn-outline-danger" value="Reset Game">
+        </form>
+    </body>
+</html>
